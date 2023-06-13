@@ -395,6 +395,17 @@ footer {
   position: relative;
 }
 
+.logo {
+  position: relative;
+}
+
+.logo img {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
 .map {
   position: relative;
 }
