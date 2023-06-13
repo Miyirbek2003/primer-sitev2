@@ -253,7 +253,9 @@ section {
   font-size: 20px;
   line-height: 30px;
 }
-
+nav li{
+  cursor: pointer;
+}
 .card-title span {
   color: #8039FD;
   font-weight: 400;
