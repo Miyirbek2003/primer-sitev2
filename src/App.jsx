@@ -14,6 +14,7 @@ import { FaTimes } from "react-icons/fa";
 import cardImg from "./img/cardimg.png";
 import app from "./img/app.png";
 import { GiHamburgerMenu } from "react-icons/gi";
+import scrollId from ".";
 export default function App() {
   const [lang, setLang] = React.useState("Eng");
   const [open, setOpen] = React.useState(false);
@@ -34,7 +35,7 @@ export default function App() {
   });
   return (
     <>
-      <section className="home">
+      <section className="home" id="home">
         <div className="container">
           <header className="header">
             <div className="logo">
@@ -42,10 +43,10 @@ export default function App() {
             </div>
             <nav className="navbar">
               <ul>
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Menu</li>
-                <li>Contact</li>
+                <li onClick={() => scrollId("home")}>Home</li>
+                <li onClick={() => scrollId("about")}>About Us</li>
+                <li onClick={() => scrollId("menu")}>Menu</li>
+                <li onClick={() => scrollId("contact")}>Contact</li>
               </ul>
             </nav>
             <nav className="mobnav">
@@ -113,10 +114,46 @@ export default function App() {
                 </div>
               </header>
               <ul>
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Menu</li>
-                <li>Contact</li>
+                <li
+                  onClick={() => {
+                    scrollId("home");
+                    setOpen(!open);
+                    const navbar = document.querySelector(".mobnav");
+                    navbar.classList.remove("active");
+                  }}
+                >
+                  Home
+                </li>
+                <li
+                  onClick={() => {
+                    scrollId("about");
+                    setOpen(!open);
+                    const navbar = document.querySelector(".mobnav");
+                    navbar.classList.remove("active");
+                  }}
+                >
+                  About Us
+                </li>
+                <li
+                  onClick={() => {
+                    scrollId("menu");
+                    setOpen(!open);
+                    const navbar = document.querySelector(".mobnav");
+                    navbar.classList.remove("active");
+                  }}
+                >
+                  Menu
+                </li>
+                <li
+                  onClick={() => {
+                    scrollId("contact");
+                    setOpen(!open);
+                    const navbar = document.querySelector(".mobnav");
+                    navbar.classList.remove("active");
+                  }}
+                >
+                  Contact
+                </li>
               </ul>
             </nav>
             <div style={{ display: "flex", gap: "7px", alignItems: "center" }}>
@@ -192,7 +229,7 @@ export default function App() {
           </main>
         </div>
       </section>
-      <section className="about">
+      <section className="about" id="about">
         <div className="container">
           <div className="section-title">
             <h1>About Us</h1>
@@ -235,7 +272,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section className="menu">
+      <section className="menu" id="menu">
         <div className="container">
           <div className="section-title">
             <h1>Menu</h1>
@@ -380,7 +417,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <footer>
+      <footer id="contact">
         <div className="container">
           <div className="footer-inner">
             <div className="form">

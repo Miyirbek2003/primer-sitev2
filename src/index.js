@@ -1,2 +1,5 @@
-const header = document.querySelector('.header')
-const root = document.getElementById('root')
+export default function scrollId(element) {
+    const el = document.getElementById(element);
+    window.scrollTo(el.offsetLeft, el.offsetTop - 50);
+}
+
