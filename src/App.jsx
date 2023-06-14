@@ -3,7 +3,7 @@
 // import Home from "./components/Home/Home";
 // import Menu from "./components/Menu/Menu";
 // import OurApp from "./components/OurApp/OurApp";
-import logo from "./img/logo.png";
+import logo from "./img/logo.svg";
 import globe from "./img/icons/globe.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import React from "react";
