@@ -14,6 +14,11 @@
     text-align: center;
 }
 
+.modal .container {
+    display: flex;
+    justify-content: center;
+}
+
 .exit {
     position: absolute;
     top: 25px;
