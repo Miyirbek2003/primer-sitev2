@@ -660,16 +660,45 @@ footer {
   .card-body {
     gap: 16px;
   }
+
+  .modal-text h1 {
+    font-size: 40px;
+    line-height: 28px;
+    white-space: nowrap;
+  }
+
+  .modal-text p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .apps {
+    width: 70%;
+  }
+
+  .exit {
+    font-size: 20px;
+  }
+
 }
 
 
 @media screen and (max-width:395px) {
   .app-text h1 {
     font-weight: 500;
-    font-size: 28px;
+    font-size: 35px;
     line-height: 39px;
     text-align: center;
     white-space: nowrap;
+  }
+
+  .modal-text h1 {
+    font-size: 37px;
+  }
+
+  .modal-text p {
+    font-size: 12px;
+    line-height: 22px;
   }
 
   .app-text p {
