@@ -36,8 +36,8 @@ export default function App() {
   return (
     <>
       <section className="home" id="home">
-        <div className="container">
-          <header className="header">
+        <header className="header">
+          <div className="container">
             <div className="logo">
               <img src={logo} alt="Logo Primier Lunch" />
             </div>
@@ -56,7 +56,11 @@ export default function App() {
                 </div>
 
                 <div
-                  style={{ display: "flex", gap: "7px", alignItems: "center" }}
+                  style={{
+                    display: "flex",
+                    gap: "7px",
+                    alignItems: "center",
+                  }}
                 >
                   <div className="lang">
                     <span className="svg-globe">
@@ -207,27 +211,27 @@ export default function App() {
                 {open ? <FaTimes size={25} /> : <GiHamburgerMenu size={25} />}
               </div>
             </div>
-          </header>
-          <main>
-            <div className="main-title">
-              <h1>Good food choices are good investments</h1>
-              <p>
-                There is a powerful need for symbolism, and that means the
-                architecture must have something that appeals to the human
-                heart.
-              </p>
-            </div>
-            <button className="order">Order Now</button>
-            <div className="apps">
-              <a href="#">
-                <img src={googleP} alt="Google Play Link" />
-              </a>
-              <a href="#">
-                <img src={appstore} alt="App Store Link" />
-              </a>
-            </div>
-          </main>
-        </div>
+          </div>
+        </header>
+
+        <main>
+          <div className="main-title">
+            <h1>Good food choices are good investments</h1>
+            <p>
+              There is a powerful need for symbolism, and that means the
+              architecture must have something that appeals to the human heart.
+            </p>
+          </div>
+          <button className="order">Order Now</button>
+          <div className="apps">
+            <a href="#">
+              <img src={googleP} alt="Google Play Link" />
+            </a>
+            <a href="#">
+              <img src={appstore} alt="App Store Link" />
+            </a>
+          </div>
+        </main>
       </section>
       <section className="about" id="about">
         <div className="container">

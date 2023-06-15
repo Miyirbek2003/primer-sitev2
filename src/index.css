@@ -58,7 +58,7 @@ img {
 
 .home header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 10px 20px;
   position: fixed;
@@ -68,6 +68,7 @@ img {
   color: white;
   z-index: 1001;
   transition: background-color 0.2s;
+  height: 86px;
 }
 
 .home nav ul {
@@ -156,10 +157,10 @@ img {
   gap: 15px;
 }
 
-
 section {
   color: white;
 }
+
 
 .about {
   background-size: cover;
@@ -167,6 +168,33 @@ section {
   background-repeat: repeat;
   color: white;
   padding: 30px 0;
+}
+
+footer .apps {
+  justify-content: space-between;
+}
+
+footer .apps a {
+  width: 100%;
+}
+
+footer .apps img {
+  width: 100%;
+  height: 50px;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+  left: auto;
+  top: 0;
+  width: 100%;
+  color: white;
+  z-index: 1001;
+  transition: background-color 0.2s;
 }
 
 .section-title {
@@ -249,6 +277,7 @@ section {
 .app-img {
   position: relative;
 }
+
 
 .app-img img {
   width: 100%;
