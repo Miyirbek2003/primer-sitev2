@@ -45,7 +45,7 @@ export default function App() {
           <section className="home" id="home">
             <header className="header">
               <div className="container">
-                <div className="logo">
+                <div className="logo" onClick={() => scrollId("home")}>
                   <img src={logo} alt="Logo Primier Lunch" />
                 </div>
                 <nav className="navbar">
