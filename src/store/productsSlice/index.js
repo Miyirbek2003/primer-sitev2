@@ -8,7 +8,8 @@ export const getProducts = createAsyncThunk('productsSlice/getProducts', async (
 })
 
 const initialState = {
-    products: []
+    products: [],
+    lang: localStorage.getItem('i18nextLng') ? localStorage.getItem('i18nextLng') : localStorage.setItem('i18nextLng', 'qr')
 }
 
 const productsSlice = createSlice({

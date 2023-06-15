@@ -20,9 +20,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "./store/productsSlice";
 export default function App() {
-  const [lang, setLang] = React.useState(
-    localStorage.getItem("i18nextLng").toUpperCase()
-  );
+  const [lang, setLang] = React.useState(localStorage.getItem("i18nextLng"));
   const [open, setOpen] = React.useState(false);
   const [modal, setModal] = React.useState(false);
   const { t, i18n } = useTranslation();
@@ -202,10 +200,15 @@ export default function App() {
                           />
                         </svg>
                       </span>
-                      <span className="current">{lang}</span>
+                      <span
+                        className="current"
+                        style={{ textTransform: "capitalize" }}
+                      >
+                        {lang}
+                      </span>
                       <IoIosArrowDown className="arr" />
                       <ul className="drop">
-                        {lang !== "Qr" && (
+                        {lang.toLocaleLowerCase() !== "qr" && (
                           <li
                             onClick={() => {
                               i18n.changeLanguage("qr");
@@ -215,7 +218,7 @@ export default function App() {
                             Qr
                           </li>
                         )}
-                        {lang !== "Uz" && (
+                        {lang.toLocaleLowerCase() !== "uz" && (
                           <li
                             onClick={() => {
                               i18n.changeLanguage("uz");
@@ -225,7 +228,7 @@ export default function App() {
                             Uz
                           </li>
                         )}
-                        {lang !== "Ру" && (
+                        {lang.toLocaleLowerCase() !== "ру" && (
                           <li
                             onClick={() => {
                               i18n.changeLanguage("ru");
@@ -235,7 +238,7 @@ export default function App() {
                             Ру
                           </li>
                         )}
-                        {lang !== "En" && (
+                        {lang.toLocaleLowerCase() !== "en" && (
                           <li
                             onClick={() => {
                               i18n.changeLanguage("en");
