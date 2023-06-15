@@ -16,10 +16,16 @@ import app from "./img/app.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import scrollId from ".";
 import Modal from "./components/Modal/Modal";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "./store/productsSlice";
 export default function App() {
-  const [lang, setLang] = React.useState("Eng");
+  const [lang, setLang] = React.useState(
+    localStorage.getItem("i18nextLng").toUpperCase()
+  );
   const [open, setOpen] = React.useState(false);
   const [modal, setModal] = React.useState(false);
+  const { t, i18n } = useTranslation();
   if (open) {
     document.body.style.overflow = "hidden";
   } else {
@@ -36,6 +42,12 @@ export default function App() {
       }
     }
   });
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.productsSlice);
+  React.useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+  console.log(products);
   return (
     <>
       {modal ? (
@@ -43,70 +55,59 @@ export default function App() {
       ) : (
         <>
           <section className="home" id="home">
-            <header className="header">
-              <div className="container">
-                <div className="logo" onClick={() => scrollId("home")}>
-                  <img src={logo} alt="Logo Primier Lunch" />
-                </div>
-                <nav className="navbar">
-                  <ul>
-                    <li onClick={() => scrollId("home")}>Home</li>
-                    <li onClick={() => scrollId("about")}>About Us</li>
-                    <li onClick={() => scrollId("menu")}>Menu</li>
-                    <li onClick={() => scrollId("contact")}>Contact</li>
-                  </ul>
-                </nav>
-                <nav className="mobnav">
-                  <header>
-                    <div className="logo">
-                      <img src={logo} alt="Logo Primier Lunch" />
-                    </div>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "7px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div className="lang">
-                        <span className="svg-globe">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                              stroke="white"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M2 12H22"
-                              stroke="white"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M16 12C15.9228 8.29203 14.5013 4.73835 12 2C9.49872 4.73835 8.07725 8.29203 8 12C8.07725 15.708 9.49872 19.2616 12 22C14.5013 19.2616 15.9228 15.708 16 12Z"
-                              stroke="white"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </span>
-                        <span className="current">{lang}</span>
-                        <IoIosArrowDown />
+            <div className="container">
+              <header className="header">
+                <div className="container">
+                  <div className="logo" onClick={() => scrollId("home")}>
+                    <img src={logo} alt="Logo Primier Lunch" />
+                  </div>
+                  <nav className="navbar">
+                    <ul>
+                      <li onClick={() => scrollId("home")}>{t("home")}</li>
+                      <li onClick={() => scrollId("about")}>{t("about")}</li>
+                      <li onClick={() => scrollId("menu")}>{t("menu")}</li>
+                      <li onClick={() => scrollId("contact")}>
+                        {t("contact")}
+                      </li>
+                    </ul>
+                  </nav>
+                  <nav className="mobnav">
+                    <header>
+                      <div className="logo">
+                        <img src={logo} alt="Logo Primier Lunch" />
                       </div>
+
                       <div
-                        className="burger"
+                        style={{
+                          display: "flex",
+                          gap: "7px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <div
+                          className="burger"
+                          onClick={() => {
+                            setOpen(!open);
+                            const navbar = document.querySelector(".mobnav");
+                            if (!open) {
+                              navbar.classList.add("active");
+                            } else {
+                              navbar.classList.remove("active");
+                            }
+                          }}
+                        >
+                          {open ? (
+                            <FaTimes size={25} />
+                          ) : (
+                            <GiHamburgerMenu size={25} />
+                          )}
+                        </div>
+                      </div>
+                    </header>
+                    <ul>
+                      <li
                         onClick={() => {
+                          scrollId("home");
                           setOpen(!open);
                           const navbar = document.querySelector(".mobnav");
                           if (!open) {
@@ -116,138 +117,180 @@ export default function App() {
                           }
                         }}
                       >
-                        {open ? (
-                          <FaTimes size={25} />
-                        ) : (
-                          <GiHamburgerMenu size={25} />
-                        )}
-                      </div>
-                    </div>
-                  </header>
-                  <ul>
-                    <li
-                      onClick={() => {
-                        scrollId("home");
-                        setOpen(!open);
-                        const navbar = document.querySelector(".mobnav");
-                        navbar.classList.remove("active");
-                      }}
-                    >
-                      Home
-                    </li>
-                    <li
-                      onClick={() => {
-                        scrollId("about");
-                        setOpen(!open);
-                        const navbar = document.querySelector(".mobnav");
-                        navbar.classList.remove("active");
-                      }}
-                    >
-                      About Us
-                    </li>
-                    <li
-                      onClick={() => {
-                        scrollId("menu");
-                        setOpen(!open);
-                        const navbar = document.querySelector(".mobnav");
-                        navbar.classList.remove("active");
-                      }}
-                    >
-                      Menu
-                    </li>
-                    <li
-                      onClick={() => {
-                        scrollId("contact");
-                        setOpen(!open);
-                        const navbar = document.querySelector(".mobnav");
-                        navbar.classList.remove("active");
-                      }}
-                    >
-                      Contact
-                    </li>
-                  </ul>
-                </nav>
-                <div
-                  style={{ display: "flex", gap: "7px", alignItems: "center" }}
-                >
-                  <div className="lang">
-                    <span className="svg-globe">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        {t("home")}
+                      </li>
+                      <li
+                        onClick={() => {
+                          scrollId("about");
+                          setOpen(!open);
+                          const navbar = document.querySelector(".mobnav");
+                          if (!open) {
+                            navbar.classList.add("active");
+                          } else {
+                            navbar.classList.remove("active");
+                          }
+                        }}
                       >
-                        <path
-                          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                          stroke="white"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M2 12H22"
-                          stroke="white"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M16 12C15.9228 8.29203 14.5013 4.73835 12 2C9.49872 4.73835 8.07725 8.29203 8 12C8.07725 15.708 9.49872 19.2616 12 22C14.5013 19.2616 15.9228 15.708 16 12Z"
-                          stroke="white"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </span>
-                    <span className="current">{lang}</span>
-                    <IoIosArrowDown />
-                  </div>
+                        {t("about")}
+                      </li>
+                      <li
+                        onClick={() => {
+                          scrollId("menu");
+                          setOpen(!open);
+                          const navbar = document.querySelector(".mobnav");
+                          if (!open) {
+                            navbar.classList.add("active");
+                          } else {
+                            navbar.classList.remove("active");
+                          }
+                        }}
+                      >
+                        {t("menu")}
+                      </li>
+                      <li
+                        onClick={() => {
+                          scrollId("contact");
+                          setOpen(!open);
+                          const navbar = document.querySelector(".mobnav");
+                          if (!open) {
+                            navbar.classList.add("active");
+                          } else {
+                            navbar.classList.remove("active");
+                          }
+                        }}
+                      >
+                        {t("contact")}
+                      </li>
+                    </ul>
+                  </nav>
                   <div
-                    className="burger"
-                    onClick={() => {
-                      setOpen(!open);
-                      const navbar = document.querySelector(".mobnav");
-                      if (!open) {
-                        navbar.classList.add("active");
-                      } else {
-                        navbar.classList.remove("active");
-                      }
+                    style={{
+                      display: "flex",
+                      gap: "7px",
+                      alignItems: "center",
                     }}
                   >
-                    {open ? (
-                      <FaTimes size={25} />
-                    ) : (
-                      <GiHamburgerMenu size={25} />
-                    )}
+                    <div className="lang">
+                      <span className="svg-globe">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                            stroke="white"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2 12H22"
+                            stroke="white"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M16 12C15.9228 8.29203 14.5013 4.73835 12 2C9.49872 4.73835 8.07725 8.29203 8 12C8.07725 15.708 9.49872 19.2616 12 22C14.5013 19.2616 15.9228 15.708 16 12Z"
+                            stroke="white"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span className="current">{lang}</span>
+                      <IoIosArrowDown className="arr" />
+                      <ul className="drop">
+                        {lang !== "Qr" && (
+                          <li
+                            onClick={() => {
+                              i18n.changeLanguage("qr");
+                              setLang("Qr");
+                            }}
+                          >
+                            Qr
+                          </li>
+                        )}
+                        {lang !== "Uz" && (
+                          <li
+                            onClick={() => {
+                              i18n.changeLanguage("uz");
+                              setLang("Uz");
+                            }}
+                          >
+                            Uz
+                          </li>
+                        )}
+                        {lang !== "Ру" && (
+                          <li
+                            onClick={() => {
+                              i18n.changeLanguage("ru");
+                              setLang("Ру");
+                            }}
+                          >
+                            Ру
+                          </li>
+                        )}
+                        {lang !== "En" && (
+                          <li
+                            onClick={() => {
+                              i18n.changeLanguage("en");
+                              setLang("En");
+                            }}
+                          >
+                            En
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                    <div
+                      className="burger"
+                      onClick={() => {
+                        setOpen(!open);
+                        const navbar = document.querySelector(".mobnav");
+                        if (!open) {
+                          navbar.classList.add("active");
+                        } else {
+                          navbar.classList.remove("active");
+                        }
+                      }}
+                    >
+                      {open ? (
+                        <FaTimes size={25} />
+                      ) : (
+                        <GiHamburgerMenu size={25} />
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </header>
+              </header>
 
-            <main>
-              <div className="main-title">
-                <h1>Good food choices are good investments</h1>
-                <p>
-                  There is a powerful need for symbolism, and that means the
-                  architecture must have something that appeals to the human
-                  heart.
-                </p>
-              </div>
-              <button className="order" onClick={() => setModal(true)}>
-                Order Now
-              </button>
-              <div className="apps">
-                <a href="#">
-                  <img src={googleP} alt="Google Play Link" />
-                </a>
-                <a href="#">
-                  <img src={appstore} alt="App Store Link" />
-                </a>
-              </div>
-            </main>
+              <main>
+                <div className="main-title">
+                  <h1>{t("maintitle")}</h1>
+                  <p>
+                    There is a powerful need for symbolism, and that means the
+                    architecture must have something that appeals to the human
+                    heart.
+                  </p>
+                </div>
+                <button className="order" onClick={() => setModal(true)}>
+                  Order Now
+                </button>
+                <div className="apps">
+                  <a href="#">
+                    <img src={googleP} alt="Google Play Link" />
+                  </a>
+                  <a href="#">
+                    <img src={appstore} alt="App Store Link" />
+                  </a>
+                </div>
+              </main>
+            </div>
           </section>
           <section className="about" id="about">
             <div className="container">
@@ -300,132 +343,46 @@ export default function App() {
                 <h1>Menu</h1>
               </div>
               <div className="cards">
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
+                {products &&
+                  products?.map((item) => (
+                    <div className="card">
+                      <div className="card-img">
+                        <img src={item?.image} alt="" />
+                      </div>
+                      <div className="card-body">
+                        <div className="card-text">
+                          <div className="card-title">
+                            <h4>
+                              {
+                                item?.translations.filter(
+                                  (lg) =>
+                                    lg.locale ===
+                                    localStorage.getItem("i18nextLng")
+                                )[0]?.name
+                              }
+                            </h4>
+                            <span>{item.price.toLocaleString()} swm</span>
+                          </div>
+                          <p>
+                            {
+                              item?.translations.filter(
+                                (lg) =>
+                                  lg?.locale ===
+                                  localStorage.getItem("i18nextLng")
+                              )[0]?.description
+                            }
+                          </p>
+                        </div>
+
+                        <button
+                          className="order"
+                          onClick={() => setModal(true)}
+                        >
+                          Order Now
+                        </button>
+                      </div>
                     </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
-                    </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
-                    </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
-                    </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
-                    </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
-                    </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-img">
-                    <img src={cardImg} alt="" />
-                  </div>
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h4>Hot corn chiken soup</h4>
-                      <span>45 000 som</span>
-                    </div>
-                    <p>
-                      A delicious creamy corn soup made with sweet corn
-                      vegetables chicken herbs and spices
-                    </p>
-                    <button className="order" onClick={() => setModal(true)}>
-                      Order Now
-                    </button>
-                  </div>
-                </div>
+                  ))}
               </div>
             </div>
           </section>
@@ -493,6 +450,8 @@ export default function App() {
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d714.8012114595562!2d59.61651671567829!3d42.47058808619526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41dd9b11a2fa4979%3A0xd5f8162a2a98c850!2sPremier%20Lounge!5e0!3m2!1suz!2s!4v1686385186253!5m2!1suz!2s"
                       style={{
+                        height: "200px",
+                        width: "100%",
                         borderRadius: "15px",
                         border: "0",
                         objectFit: "cover",
