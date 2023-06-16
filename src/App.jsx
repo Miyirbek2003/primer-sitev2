@@ -168,7 +168,7 @@ export default function App() {
                       alignItems: "center",
                     }}
                   >
-                    <div className="lang">
+                    <button className="lang">
                       <span className="svg-globe">
                         <svg
                           width="24"
@@ -249,7 +249,7 @@ export default function App() {
                           </li>
                         )}
                       </ul>
-                    </div>
+                    </button>
                     <div
                       className="burger"
                       onClick={() => {
