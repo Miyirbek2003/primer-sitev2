@@ -346,7 +346,11 @@ export default function App() {
                       index < showAll && (
                         <div className="card">
                           <div className="card-img">
-                            <img src={item?.img_url} alt="" />
+                            <img
+                              src={item?.img_url}
+                              alt="Foto suwretler"
+                              loading="lazy"
+                            />
                           </div>
                           <div className="card-body">
                             <div className="card-text">
