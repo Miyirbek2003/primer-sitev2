@@ -610,6 +610,9 @@ footer {
   .app-text{
     align-items: center;
   }
+  .app-text p{
+    text-align: center;
+  }
   .about-text h4 {
     font-weight: 500;
     font-size: 29px;
