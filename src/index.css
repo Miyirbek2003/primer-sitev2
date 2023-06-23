@@ -90,6 +90,7 @@ img {
   background-color: transparent;
   border: none;
   color: white;
+  outline: none;
 }
 
 .drop {
@@ -295,9 +296,15 @@ footer .apps img {
 
 
 .menu {
+  display: flex;
+  flex-direction: column;
   padding: 30px 0;
 }
-
+.menu > .order{
+  max-width: 200px;
+  align-self: center;
+  margin-top: 25px;
+}
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -526,7 +533,6 @@ footer {
   width: auto;
   opacity: 1;
 }
-
 @media screen and (max-width:768px) {
   .burger {
     display: flex;

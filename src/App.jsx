@@ -4,14 +4,12 @@
 // import Menu from "./components/Menu/Menu";
 // import OurApp from "./components/OurApp/OurApp";
 import logo from "./img/logo.svg";
-import globe from "./img/icons/globe.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import React from "react";
 import googleP from "./img/icons/google.svg";
 import appstore from "./img/icons/appstore.svg";
 import abt1 from "./img/aboutimg.png";
 import { FaTimes } from "react-icons/fa";
-import cardImg from "./img/cardimg.png";
 import app from "./img/app.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import scrollId from ".";
@@ -40,12 +38,12 @@ export default function App() {
       }
     }
   });
+  const [showAll, setShowAll] = React.useState(6);
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productsSlice);
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
-  console.log(products);
   return (
     <>
       {modal ? (
@@ -275,14 +273,10 @@ export default function App() {
               <main>
                 <div className="main-title">
                   <h1>{t("maintitle")}</h1>
-                  <p>
-                    There is a powerful need for symbolism, and that means the
-                    architecture must have something that appeals to the human
-                    heart.
-                  </p>
+                  <p>{t("mainp")}</p>
                 </div>
                 <button className="order" onClick={() => setModal(true)}>
-                  Order Now
+                  {t("order")}
                 </button>
                 <div className="apps">
                   <a href="#">
@@ -298,7 +292,7 @@ export default function App() {
           <section className="about" id="about">
             <div className="container">
               <div className="section-title">
-                <h1>About Us</h1>
+                <h1>{t('about')}</h1>
               </div>
               <div className="inner">
                 <div>
@@ -347,47 +341,58 @@ export default function App() {
               </div>
               <div className="cards">
                 {products &&
-                  products?.map((item) => (
-                    <div className="card">
-                      <div className="card-img">
-                        <img src={item?.image} alt="" />
-                      </div>
-                      <div className="card-body">
-                        <div className="card-text">
-                          <div className="card-title">
-                            <h4>
-                              {
-                                item?.translations.filter(
-                                  (lg) =>
-                                    lg.locale ===
-                                    localStorage.getItem("i18nextLng")
-                                )[0]?.name
-                              }
-                            </h4>
-                            <span>{item.price.toLocaleString()} swm</span>
+                  products?.map(
+                    (item, index) =>
+                      index < showAll && (
+                        <div className="card">
+                          <div className="card-img">
+                            <img src={item?.image} alt="" />
                           </div>
-                          <p>
-                            {
-                              item?.translations.filter(
-                                (lg) =>
-                                  lg?.locale ===
-                                  localStorage.getItem("i18nextLng")
-                              )[0]?.description
-                            }
-                          </p>
-                        </div>
+                          <div className="card-body">
+                            <div className="card-text">
+                              <div className="card-title">
+                                <h4>
+                                  {
+                                    item?.translations.filter(
+                                      (lg) =>
+                                        lg.locale ===
+                                        localStorage.getItem("i18nextLng")
+                                    )[0]?.name
+                                  }
+                                </h4>
+                                <span>{item.price.toLocaleString()} swm</span>
+                              </div>
+                              <p>
+                                {
+                                  item?.translations.filter(
+                                    (lg) =>
+                                      lg?.locale ===
+                                      localStorage.getItem("i18nextLng")
+                                  )[0]?.description
+                                }
+                              </p>
+                            </div>
 
-                        <button
-                          className="order"
-                          onClick={() => setModal(true)}
-                        >
-                          Order Now
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                            <button
+                              className="order"
+                              onClick={() => setModal(true)}
+                            >
+                              Order Now
+                            </button>
+                          </div>
+                        </div>
+                      )
+                  )}
               </div>
             </div>
+            <button
+              className="order"
+              onClick={() => {
+                showAll === 6 ? setShowAll(products?.length) : setShowAll(6);
+              }}
+            >
+              {showAll === 6 ? "Show More" : "Hide "}
+            </button>
           </section>
           <section className="app">
             <div className="container">

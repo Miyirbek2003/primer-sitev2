@@ -14,7 +14,10 @@ i18n
                     'home': 'Bosh sahifa',
                     'about': 'Biz haqimizda',
                     'menu': 'Menyu',
-                    'contact': 'Bog`lanish'
+                    'contact': 'Bog`lanish',
+                    'order': 'Buyirtma berish',
+                    'mainp': 'Simvolizmga kuchli ehtiyoj bor va bu arxitekturada bo`lishi kerakligini anglatadi inson qalbiga yoqadigan narsa.'
+
                 }
             },
 
@@ -24,7 +27,9 @@ i18n
                     'home': 'Bas bet',
                     'about': 'Biz haqqimizda',
                     'menu': 'Menyu',
-                    'contact': 'Baylanisiw'
+                    'contact': 'Baylanisiw',
+                    'order': 'Buyirtpa beriw',
+                    'mainp': 'Simvolizmga kúshli mútajlik bar jáne bul arxitekturada bolıwı kerekligini ańlatadı insan kewiline yoqadigan zat.'
                 }
             },
             ru: {
@@ -33,7 +38,9 @@ i18n
                     'home': 'Главная',
                     'about': 'О нас',
                     'menu': 'Меню',
-                    'contact': 'Контакты'
+                    'contact': 'Контакты',
+                    'order': 'Заказать сейчас',
+                    'mainp': 'Существует острая потребность в символизме, а это значит, что архитектура должна иметь то, что взывает к человеческому сердцу.'
                 }
             },
 
@@ -43,7 +50,9 @@ i18n
                     'home': 'Home',
                     'about': 'About us',
                     'menu': 'Menu',
-                    'contact': 'Contact'
+                    'contact': 'Contact',
+                    'order': 'Order Now',
+                    'mainp': 'There is a powerful need for symbolism, and that means the architecture must have something that appeals to the human heart.'
                 }
             }
         },
