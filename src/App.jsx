@@ -292,7 +292,7 @@ export default function App() {
           <section className="about" id="about">
             <div className="container">
               <div className="section-title">
-                <h1>{t('about')}</h1>
+                <h1>{t("about")}</h1>
               </div>
               <div className="inner">
                 <div>
@@ -346,7 +346,7 @@ export default function App() {
                       index < showAll && (
                         <div className="card">
                           <div className="card-img">
-                            <img src={item?.image} alt="" />
+                            <img src={item?.img_url} alt="" />
                           </div>
                           <div className="card-body">
                             <div className="card-text">
