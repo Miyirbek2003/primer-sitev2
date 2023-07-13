@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 export const getProducts = createAsyncThunk('productsSlice/getProducts', async (_, { dispatch, rejectWithValue }) => {
-    const response = await axios.get('https://premier.dbc-server.uz/api/products')
+    const response = await axios.get('https://admin.premierlounge.uz/api/products')
     dispatch(setProducts(response.data.data))
 })
 

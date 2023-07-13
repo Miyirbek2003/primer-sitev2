@@ -16,10 +16,10 @@ export default function Modal({ setModal }) {
             offer from us.
           </p>
           <div className="apps">
-            <a href="#">
+            <a href="https://play.google.com/store/apps/details?id=com.bizmiz.premierlounge">
               <img src={googleP} alt="Google Play Link" />
             </a>
-            <a href="#">
+            <a href="https://apps.apple.com/uz/app/premier-lounge/id6450894166">
               <img src={appstore} alt="App Store Link" />
             </a>
           </div>
